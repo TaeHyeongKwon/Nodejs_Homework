@@ -32,14 +32,14 @@ router.post("/comment/:postId", async (req, res) => {
 router.get("/comment/:postId", async (req, res) => {
   try {
     const { postId } = req.params;
-    const post = await Comment.find(
+    const comment = await Comment.find(
       { postId },
       { _id: true, user: true, content: true, createdAt: true }
     ).sort({ createdAt: -1 });
-    if (post.toString() === "") {
+    if (comment.toString() === "") {
       throw error;
     }
-    return res.status(200).json({ post });
+    return res.status(200).json({ comment });
   } catch (error) {
     return res
       .status(400)
