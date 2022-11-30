@@ -37,7 +37,7 @@ router.get("/comment/:postId", async (req, res) => {
       { _id: true, user: true, content: true, createdAt: true }
     ).sort({ createdAt: -1 });
     if (comment.toString() === "") {
-      throw error;
+      return res.status(400).json({ message: "comment가 없습니다." });
     }
     return res.status(200).json({ comment });
   } catch (error) {
