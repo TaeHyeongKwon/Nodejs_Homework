@@ -61,7 +61,7 @@ router.get("/posts/:postId", async (req, res) => {
   }
 });
 
-// 게시글 수정 API
+// 게시글 수정 API 입니다
 router.put("/posts/:postId", async (req, res) => {
   try {
     const { postId } = req.params;
