@@ -66,11 +66,10 @@ router.put("/posts/:postId", async (req, res) => {
   try {
     const { postId } = req.params;
     const { password, title, content } = req.body;
-    if (!password || !title || !content) {
+    if (!password || !title || !content)
       return res
         .status(400)
         .json({ message: "데이터 형식이 올바르지 않습니다.3" });
-    }
     const posts = await Posts.findOne({ _id: postId });
     if (password === posts.password) {
       await Posts.updateOne(
@@ -78,9 +77,7 @@ router.put("/posts/:postId", async (req, res) => {
         { $set: { title: title, content: content } }
       );
       return res.status(201).json({ message: "게시글을 수정하였습니다." });
-    } else {
-      return res.status(400).json({ message: "비밀번호가 다릅니다." });
-    }
+    } else return res.status(400).json({ message: "비밀번호가 다릅니다." });
   } catch (error) {
     return res.status(404).json({ message: "게시글 조회에 실패하였습니다." });
   }

@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
+require("dotenv").config();
 
 const connect = () => {
   mongoose
-    .connect("mongodb://127.0.0.1:27017/Node_Homework")
+    .connect(process.env.mongomongo)
     .then(console.log("몽고디비 연결 성공"))
     .catch((err) => console.log(err));
 };
